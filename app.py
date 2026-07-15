@@ -62,7 +62,7 @@ def init_connection():
 gc = init_connection()
 
 # 🔴 ¡IMPORTANTE! Reemplaza esto con el ID de tu Google Sheet (lo sacas de la URL del navegador)
-SHEET_ID = "PEGAR_AQUI_EL_ID_DE_TU_GOOGLE_SHEET"
+SHEET_ID = "1co06HSyK0o0RjnVg5HE9UgnuB2l47OKY3itcdkCsvPM"
 
 @st.cache_data(ttl=60) # Refresca los datos cada 60 segundos
 def get_data():
