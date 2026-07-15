@@ -52,9 +52,10 @@ def init_connection():
     except Exception:
         # 2. Si falla, busca el archivo local (Desarrollo)
         try:
-            creds = Credentials.from_service_account_file("credentials.json", scopes=scopes)
+            df_facturas, df_seguimientos, ws_facturas, ws_seguimientos = get_data()
         except Exception as e:
-            st.error("⚠️ No se encontraron credenciales. Configura st.secrets o credentials.json.")
+            st.error("Error al conectar con la hoja de datos.")
+            st.warning(f"Detalle técnico exacto del error: {e}")
             st.stop()
     
     return gspread.authorize(creds)
