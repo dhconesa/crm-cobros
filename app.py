@@ -52,10 +52,9 @@ def init_connection():
     except Exception:
         # 2. Si falla, busca el archivo local (Desarrollo)
         try:
-            df_facturas, df_seguimientos, ws_facturas, ws_seguimientos = get_data()
+            creds = Credentials.from_service_account_file("credentials.json", scopes=scopes)
         except Exception as e:
-            st.error("Error al conectar con la hoja de datos.")
-            st.warning(f"Detalle técnico exacto del error: {e}")
+            st.error("⚠️ No se encontraron credenciales. Configura st.secrets o credentials.json.")
             st.stop()
     
     return gspread.authorize(creds)
@@ -63,7 +62,7 @@ def init_connection():
 gc = init_connection()
 
 # 🔴 ¡IMPORTANTE! Reemplaza esto con el ID de tu Google Sheet (lo sacas de la URL del navegador)
-SHEET_ID = "1co06HSyK0o0RjnVg5HE9UgnuB2l47OKY3itcdkCsvPM"
+SHEET_ID = "PEGAR_AQUI_EL_ID_DE_TU_GOOGLE_SHEET"
 
 @st.cache_data(ttl=60) # Refresca los datos cada 60 segundos
 def get_data():
